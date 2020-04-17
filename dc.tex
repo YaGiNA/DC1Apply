@@ -1,0 +1,107 @@
+%\documentclass[11pt,a4paper,uplatex,twoside,dvipdfmx]{ujarticle} 	% for uplatex
+\documentclass[11pt,a4paper,twoside,dvipdfmx]{jarticle}		% platex
+%==== 科研費LaTeX =============================================
+%	2021(R03)年度 DC
+%============================================================
+% 2008-03-08: Taku Yamanaka (JSPS Research Center for Science Systems / Osaka Univ.)
+% 2009-03-03: Yoko Yanagida (Assistant)
+% 2010-03-03: Taku: Imported new features introduced in 2009 fall.
+% 2011-02-25: Taku: Revised for JFY2013.
+% 2013-03-14: Taku: Revised for JFY2014.
+% 2014-02-22: Taku: Revised for JFY2015.
+% 2016-02-26: Taku: Revised for JFY2017.
+%============================================================
+\input{forms/form00_header}
+% user01_header
+%＝＝＝　様式のファイルの形式の指定　＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+%   PDFではなく、eps の様式を読み込む場合は、次の行の頭に「%」をつけてください。
+\setboolean{usePDFform}{true}
+%＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+\input{forms/form01_header}
+
+% user02_header
+%＝＝＝　予算の表の印刷　＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+% 予算の集計の表を出すためには、次の行の頭の%を消してください。
+%\setboolean{BudgetSummary}{true}
+%＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+%＝＝＝ For English, uncomment the next line to left-justify inside table columns.
+%\renewcommand{\KLCLLang}{\KLCL}
+
+% ＝＝＝　一部のページだけタイプセット　＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+% New in 2009 fall version!
+% 選んだページだけタイプセットするには、次の例の頭の%を消し、並べてください。
+% 複数のページを選ぶこともできます。
+% 提出前には、必ず全てコメントアウト(頭に%をつける)してください。
+%ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+%\KLTypesetPage{1}			% p.1 (or p.1を含む連続したページ),
+%\KLTypesetPage{3}			% p.3 (or p.3を含む連続したページ),
+%\KLTypesetPagesInRange{5}{6}	% p.5 ~ p.6,
+%\KLTypesetPagesInRange{8}{10}	% and p.8 ~ p.10
+%＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+% ===== my favorite packages ====================================
+% ここに、自分の使いたいパッケージを宣言して下さい。
+\usepackage{wrapfig}
+% \usepackage{amssymb}
+%\usepackage{mb}
+% \usepackage{color} % でも科研費の書類はグレースケールで印刷されます
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+%==========================================================
+
+\newcommand{\KLShouKeiLine}[1]{\cline{#1}}
+%もし、小計の上の線を取れと事務に言われたら、
+%「そのようなことは、記入要項に書かれていないし、学振はそのようなことは気にしていない。」と
+% 突っぱねる。
+% それでもなお消せと理不尽なことを言われたら、次の行の 最初の「%」を消す。	
+%\renewcommand{\KLShouKeiLine}[1]{}
+
+\newcommand{\KLBudgetTableFontSize}{small}	% 予算の表のフォントの大きさ: small, footnotesize
+\newcommand{\KLFundsTableFontSize}{small}	%応募中、受入れ予定の研究費のフォントの大きさ：normalsize, small, footnotesize
+
+% ===== my personal definitions ==================================
+% ここに、自分のよく使う記号などを定義して下さい。
+\newcommand{\klpionn}{K_L \to \pi^0 \nu \overline{\nu}}
+\newcommand{\kppipnn}{K^+ \to \pi^+ \nu \overline{\nu}}
+
+
+\input{forms/hook3} % for future maintenance
+% ===== Global definitions for the PD form ======================
+%　基本情報
+%
+%------ 研究課題名  -------------------------------------------
+\newcommand{\研究課題名}{象の卵}
+
+%----- 研究機関名と研究代表者の氏名-----------------------
+\newcommand{\研究機関名}{逢坂大学}
+\newcommand{\申請者氏名}{湯川秀樹}
+\newcommand{\研究代表者氏名}{\申請者氏名}
+
+%---- 研究期間の最終年度 ----------------
+\newcommand{\研究期間の最終元号年度}{34}	%平成で、半角数字のみ
+%=========================================================
+\input{forms/form02_2021_header}%<<< 
+\input{forms/form03_header}
+\input{forms/form05_dc_header}
+\input{forms/form07_header}
+%============================================================
+%endPrelude
+
+\begin{document}
+\input{forms/hook5} % for future maintenance
+%============================================================
+%     User Inputs
+%============================================================
+\input{dc_03-04_preparation_etc}
+\input{dc_05-07_purpose_plan_rights}
+\input{dc_08_publications}
+\input{dc_09_myself}
+
+%endUserFiles
+\input{forms/hook7} % for future maintenance
+
+\input{forms/dc_forms}
+%endFormatFile
+
+\input{forms/hook9} % for future maintenance
+\end{document}
