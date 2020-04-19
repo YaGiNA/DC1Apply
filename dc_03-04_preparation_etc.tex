@@ -5,12 +5,40 @@
 %watermark: w03_past_dc
 \newcommand{\研究の背景}{%
 %begin  研究の背景＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-	象の卵の研究の背景は．．．
+	\subsection{2.で述べた研究状況を踏まえこれからの研究計画の背景}
+	●\textbf{2.で述べた研究状況を踏まえこれからの研究計画の背景}
 
-	%\begin{thebibliography}{99}
-	%	\bibitem{teramura} 寺村輝夫、「ぼくは王様 - ぞうのたまごのたまごやき」.
-	%\end{thebibliography}
-	%\bibliographystyle{junsrt}
+	自然言語処理技術は、近年は前後の文脈を考慮できるBERT\cite{devlin-etal-2019-bert}を始め、
+	より自然な文章が生成できるようになった。
+	その1つとして、前節で述べたGrover\cite{NIPS2019_9106}も含まれる。
+	前節の研究では実際にGroverを拡張し\textbf{コメントを生成することでより多くのフェイクニュースを検出}することができた。
+	これからの研究では、より拡散を抑制することに繋ぐことが可能なモデルの開発を行うことを目指す。
+
+	\subsection{問題点・解決すべき点}
+	●\textbf{問題点・解決すべき点}
+
+	生成コメントを付加して分類した場合、前節提案モデルがFakeと判断した中で実際にFakeだった割合である精度(Precision)は0.59だった。
+	これは生成コメントを付加せず分類したときの0.68と比べ0.09ポイント下回る\cite{EasyChair:3190}。
+	つまり多くのフェイクニュースを検出することができても、事実に基づくニュースも同時にフェイクニュースと判定する狼少年のようなモデルとなる。
+	同時に、生成されたコメントは文法面でのクオリティが決して良いものとは言えず、このままでは説明可能性に繋げることは難しい。
+	これでは利用者の信用を得るのは難しく、拡散の抑制にはならない。
+
+	この\textbf{精度の向上}と、\textbf{不自然なコメントにより説明可能性を提供できない}2点を解決する必要がある。
+
+	\subsection{着想に至った経緯}
+	●\textbf{着想に至った経緯}
+
+	実際に早期自動検出モデルをSNS上で運用する場合を想定した。
+	このモデルの目的は拡散の抑制であるため、\textbf{フェイクニュース以上に利用者の信用を得なければ拡散を食い止められない}。
+	そのためには、真偽分類の精度を上げることと、説得力向上のために説明可能性を同時に提供する必要があると考えた。
+
+	{\small
+		\begin{thebibliography}{99}
+			\bibitem{devlin-etal-2019-bert} Jacob Devlin, \textit{et al.} BERT: Pre-training of deep bidirec-tional transformers for language understanding. In \textit{Proc. of the NAACL-HLT,} pp. 4171–4186, Minneapolis, Minnesota, June 2019.
+		\end{thebibliography}
+		%\bibliography{myreferences}
+		%\bibliographystyle{junsrt}
+	}
 %end  研究の背景 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 }
 
@@ -80,9 +108,8 @@
 	訓練が完了したコメント生成モデルを使い、図\ref{fig:model}のように\textbf{コメントを1件歯抜けにさせたユニットに生成コメントを付加した上でRealかFakeか分類させた}。
 	分類モデルはGroverが提供したものを流用した。
 
-	その結果、生成コメントを含めた場合の\textbf{再現率(Fake記事を見抜いた割合)が0.79}と、歯抜けのまま分類させたときの\textbf{0.75}とコメントなしで分類したときの\textbf{0.62}を上回る結果を得た。
-	つまり、コメントを生成することで\textbf{ファクトチェックが必要な疑わしい記事をより多く検出}することができた。
-
+	その結果、生成コメントを含めた場合の\textbf{Fake記事を見抜いた割合を示す再現率(Recall)が0.79}と、歯抜けのまま分類させたときの\textbf{0.75}とコメントなしで分類したときの\textbf{0.62}を上回る結果を得た。
+	つまり、コメントを生成することで\textbf{ファクトチェックが必要な疑わしい記事をより多く検出}することができた\cite{EasyChair:3190}。
 	同時に、生成されたコメントで頻出した単語の傾向において真偽で大きな違いはみられなかった。
 	これは、投稿された\textbf{コメントのカテゴリによる出現単語傾向の差は軽微}であることを意味した。
 
@@ -92,8 +119,9 @@
 	\begin{thebibliography}{99}
 		\bibitem{agencies_2016} Guardian staff and agencies. Washington gunman motivated by fake news `pizzagate' conspiracy,12 2016.
 		\bibitem{ZAROCOSTAS2020676} John Zarocostas. How to fight an infodemic. \textit{The Lancet}, Vol. 395, No. 10225, p. 676, 2020.
-		\bibitem{Shu2018FakeNewsNetAD} Kai Shu, Deepak Mahudeswaran, Suhang Wang, Dongwon Lee, and Huan Liu. Fakenewsnet: Adata repository with news content, social context and dynamic information for studying fake newson social media. \textit{ArXiv}, Vol. abs/1809.01286, , 2018.
-		\bibitem{NIPS2019_9106} Rowan Zellers, Ari Holtzman, Hannah Rashkin, Yonatan Bisk, Ali Farhadi, Franziska Roesner,and Yejin Choi. Defending against neural fake news. In H. Wallach, H. Larochelle, A. Beygelz-imer, F. d'Alch ́e-Buc, E. Fox, and R. Garnett, editors, \textit{Advances in Neural Information Processing Systems 32}, pp. 9054–9065. Curran Associates, Inc., 2019.
+		\bibitem{Shu2018FakeNewsNetAD} Kai Shu, \textit{et al.} Fakenewsnet: Adata repository with news content, social context and dynamic information for studying fake newson social media. \textit{ArXiv}, Vol. abs/1809.01286, 2018.
+		\bibitem{NIPS2019_9106} Rowan Zellers, \textit{et al.} Defending against neural fake news. \textit{Advances in Neural Information Processing Systems 32}, pp. 9054–9065. Curran Associates, Inc., 2019.
+		\bibitem{EasyChair:3190} Yuta Yanagi, \textit{et al.} Fake news detection withgenerated comments for news articles. \textit{EasyChair Preprint no. 3190}, EasyChair, 2020.
 	\end{thebibliography}
 	}
 	%\input{blahblah}  % << only for demonstration. Please delete it or comment it out.	
