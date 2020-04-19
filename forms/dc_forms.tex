@@ -1,0 +1,14 @@
+% dc_forms
+%=======================================
+\ifthenelse{\boolean{BudgetSummary}\OR\boolean{klTypesetPage0}}{
+	\input{forms/coverpage}
+}{}
+
+\KLInputIfPageInRangeIsSelected{1}{2}{forms/dc_form_03-04}
+\KLInputIfPageInRangeIsSelected{3}{5}{forms/dc_form_05-07}
+\KLInputIfSelected{6}{forms/dc_form_08}
+\KLInputIfSelected{7}{forms/dc_form_09}
+
+
+%========================================
+

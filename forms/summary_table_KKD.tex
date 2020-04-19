@@ -1,0 +1,99 @@
+%==================================================
+\phantom{x}	\vspace{1cm}
+\ifthenelse{\boolean{KLUseKYen}}{%
+	\renewcommand{\NumCk}{\NumC}
+}{%
+}
+
+\begin{tabular}{r|r|rrrrr}
+	\multicolumn{7}{r}{(金額単位：千円)}\\
+	\multicolumn{7}{r}{(指定通り、千円未満の端数は切り捨て)}\\
+	\hline
+	種類 & 合計 & 設備備品 & 消耗品 &旅費 & 謝金等 & その他\\
+	\hline
+	渡航費・滞在費 & 
+		\NumCk{KLAnnualSum1} &
+		& & 
+		\NumCk{KLtravel1} & & \NumCk{KLmisc1}\\
+	\hline
+		% sum research budgets for outside and inside the country
+		\setcounter{KLAnnualSum5}{\value{KLAnnualSum3}}
+		\addtocounter{KLAnnualSum5}{\value{KLAnnualSum4}}
+		\setcounter{KLequipments5}{\value{KLequipments3}}
+		\addtocounter{KLequipments5}{\value{KLequipments4}}
+		\setcounter{KLexpendables5}{\value{KLexpendables3}}
+		\addtocounter{KLexpendables5}{\value{KLexpendables4}}
+		\setcounter{KLtravel5}{\value{KLtravel3}}
+		\addtocounter{KLtravel5}{\value{KLtravel4}}
+		\setcounter{KLgratitude5}{\value{KLgratitude3}}
+		\addtocounter{KLgratitude5}{\value{KLgratitude4}}
+		\setcounter{KLmisc5}{\value{KLmisc3}}
+		\addtocounter{KLmisc5}{\value{KLmisc4}}
+	研究費 &
+		\NumCk{KLAnnualSum5} &
+		\NumCk{KLequipments5} & \NumCk{KLexpendables5} & 
+		\NumCk{KLtravel5} & \NumCk{KLgratitude5} & \NumCk{KLmisc5}\\
+	\hline
+	代替要員 & 
+		\NumCk{KLAnnualSum2} &
+		 & & 
+		\NumCk{KLtravel2} & \NumCk{KLgratitude2} & \NumCk{KLmisc2}\\
+	\hline
+	合計 &
+		\NumCk{KLAnnualSum0} &
+		\NumCk{KLequipments0} & \NumCk{KLexpendables0} & 
+		\NumCk{KLtravel0} & \NumCk{KLgratitude0} & \NumCk{KLmisc0}\\
+	\hline
+		\setcounter{KLGrandTotalValue}{0}
+		\addtocounter{KLGrandTotalValue}{\value{KLequipments0}}
+		\addtocounter{KLGrandTotalValue}{\value{KLexpendables0}}
+		\addtocounter{KLGrandTotalValue}{\value{KLtravel0}}
+		\addtocounter{KLGrandTotalValue}{\value{KLgratitude0}}
+		\addtocounter{KLGrandTotalValue}{\value{KLmisc0}}
+	各品目の合計 & \NumCk{KLGrandTotalValue}
+			& \multicolumn{5}{l}{
+				\ifthenelse{\value{KLAnnualSum0} = \value{KLGrandTotalValue}}{
+					
+				}{
+					ERROR!! 
+				}
+			}\\
+	\hline
+
+\end{tabular}
+
+\vspace{1cm}
+\underline{チェックリスト}
+\begin{enumerate}
+	\item \LaTeX のソースの中で、各品目の金額が必ず\textbackslash KLItemCost 、
+		\textbackslash KLItemNumUnitCost、\\
+		\textbackslash KLItemNumUnitCostTwo などを用いて書かれていることを確かめてください。
+		これらのマクロを使って書かれた金額の合計が、一番下の段の「各品目の合計」です。
+
+%	\item 各年度、各項目(設備備品、消耗品、．．)ごとの金額は、
+%		\LaTeX の表の中に書かれた、年度ごとの小計を表す \textbackslash KLSum を用いて
+%		計算されています。
+%		必ず、表の中では \textbackslash KLSum を用いてください。
+%		
+%	\item 応募様式の中の表の「年度ごとの」小計と、上の表は一致していますか？
+%		(\textbackslash KLSumが使われていないと、年度がずれます。）
+	
+	\item 研究種目ごとに、申請予算の上限が定められています。公募要領をよく読んで確かめてください。
+	\item この表に現れる金額と、電子申請の際の「応募情報入力」の金額が、全て一致していることを
+		確かめてください。
+		
+	\item まさか、「象の卵」のための項目や金額は、もう残っていませんね？？
+		
+	\item 問題がなければ、 \KLMainFile の初めの付近にある行を\\
+				\hspace{2cm}\%\textbackslash setboolean\{BudgetSummary\}\{true\}\\
+		のようにコメントアウトし、コンパイルし直して、「応募内容ファイル」を
+		作り直してください。電子申請で送れるファイル形式は、「PDF」です。
+		PSは受け付けられません。
+		
+	\item 電子申請で送るファイルのサイズが、\underline{3MB以下}であることを確かめてください。
+		もし、3MBを越える場合は、読み込んでいるきれいな図形の解像度を落としてください。
+		また、読み込む様式ファイルの形式(eps or pdf)を変えると
+		(\textbackslash usePDFform\{true\}のコメントをつける or はずす）、
+		最終的にできるファイルの大きさは変わります。
+\end{enumerate}
+
