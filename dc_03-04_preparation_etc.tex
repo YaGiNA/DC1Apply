@@ -37,10 +37,10 @@
 	このモデルの目的は拡散の抑制であるため、\textbf{フェイクニュース以上に利用者の信用を得なければ拡散を食い止められない}。
 	そのためには、真偽分類の性能を上げることと、説得力向上のために説明可能性を同時に提供する必要があると着想に至った。
 
-	{\small
+	{\footnotesize
 		\begin{thebibliography}{99}
 			\vspace*{-3mm}
-			\setcounter{enumiv}{5}
+			\setcounter{enumiv}{7}
 			\bibitem{devlin-etal-2019-bert} Jacob Devlin, \textit{et al.} BERT: Pre-training of deep bidirec-tional transformers for language understanding. In \textit{Proc. of the NAACL-HLT,} pp. 4171–4186, Minneapolis, Minnesota, June 2019.
 		\end{thebibliography}
 		%\bibliography{myreferences}
@@ -60,8 +60,8 @@
 	利用者の間で拡散されると、\textbf{誤った認識が広がって騙された人々が社会的損害を起こす}という問題があるため、
 	\textbf{\underline{フェイクニュース拡散の早期抑制が必要とされている}}。
 	%例えば、2016年米国大統領選挙前にフェイクニュースに騙された人々がピザ屋で銃撃事件を起こした\cite{agencies_2016}。
-	%また、今年は特にCOVID-19にまつわるフェイクニュースが広く拡散され、不安に陥った人々が買いだめを行うことが世界的に問題となった。
-	%WHOは情報の過剰な氾濫を``インフォデミック''と定義し、テドロス事務局長は\textbf{誤った情報はウイルス以上に拡散されやすい}と指摘した\cite{ZAROCOSTAS2020676}。
+	特に今年はCOVID-19にまつわるフェイクニュースが広く拡散され、不安に陥った人々が買いだめを行うことが世界的に問題となった。
+	WHOは情報の過剰な氾濫を``インフォデミック''と定義し、テドロス事務局長は\textbf{誤った情報はウイルス以上に拡散されやすい}と指摘した\cite{ZAROCOSTAS2020676}。
 
 	\subsection{問題点}
 	\noindent
@@ -72,7 +72,8 @@
 	以上の理由より結果を公表するまで時間がかかる。
 	このためフェイクニュースと比べ拡散されず、拡散抑制に繋がらないことが多い。
 	そこで迅速なファクトチェックを行うために、ニューステキストや添付メディア、
-	そしてユーザの反応からディープニューラルネットワーク (DNN)を利用しフェイクニュースを自動で検出する手法が多く開発されている。
+	そしてユーザの反応からディープニューラルネットワーク (DNN)を利用しフェイクニュースを自動で検出する手法が多く開発されている
+	\cite{Wang:2018:EEA:3219819.3219903,Wu:2018:TFF:3159652.3159677}。
 	%これを自動で検出する場合、フェイクニュースは巧妙に実際のニュースを模した形をとるため、\textbf{単純なルールベース手法では難しい}。
 	%近年ではニューステキストや添付メディア、ユーザの反応から\textbf{ディープニューラルネットワーク(DNN)}を利用した手法がみられる。
 	%この場合はブラックボックス問題により\textbf{説明可能性が不足}するため、SNS利用者から支持を得にくい。
@@ -106,18 +107,23 @@
 	\subsection{特色と独創的な点}
 	\noindent
 	●\textbf{特色と独創的な点}
-	
+	\vspace*{-3mm}
 	\begin{itemize}
+		\setlength{\parskip}{0cm}
+		\setlength{\itemsep}{0cm}
 		\item SNS上の拡散スピードに追いつくことが検出モデルのコンセプトである点
 		\item 真偽を評価する分類タスクに、コメントの生成タスクを組み込んだ点
 		\item 分類性能を大きく失わずに速報性をもつことができる点
 	\end{itemize}
+	\vspace*{-3mm}
+
+	特に2点目が、当研究最大のの学術的特色であると申請者は考えている。
 
 	\subsection{これまでの研究経過及び得られた結果}
 	\noindent
 	●\textbf{これまでの研究経過及び得られた結果}
 
-	申請者はデータセットとしてFakeNewsNet\cite{Shu2018FakeNewsNetAD}を使用した。
+	申請者はデータセットとしてFakeNewsNet\cite{Shu2018FakeNewsNetAD, shu2017fake}を使用した。
 	このデータセットは、ファクトチェックで\textbf{真偽が評価済である英文ニュース}と、それに\textbf{Twitter上で言及された投稿(ツイート)}等をもつ。
 	本研究では最低3件以上英文でコメントとしてツイートが寄せられた芸能ニュースを真偽で各2000件使用した。
 	拡散の初期段階ではコメントの数は期待できないため、使用するコメントは各3件ずつ無作為に選出し、残りは対象から除外した。
@@ -133,15 +139,20 @@
 	同時に、生成されたコメントで頻出した単語の傾向において真偽で大きな違いはみられなかった。
 	これは、\textbf{記事の真偽によってコメント内の単語傾向の差は軽微}であることを意味した。
 
-	{\small 
+	\vspace*{-1mm}
+	{\footnotesize 
 	%\bibliography{myreferences}
 	%\bibliographystyle{junsrt}
 	\begin{thebibliography}{99}
+		\vspace*{-2mm}
 		\setlength{\parskip}{0cm}
 		\setlength{\itemsep}{0cm}
-		\bibitem{agencies_2016} Guardian staff and agencies. Washington gunman motivated by fake news `pizzagate' conspiracy,12 2016.
+		%\bibitem{agencies_2016} Guardian staff and agencies. Washington gunman motivated by fake news `pizzagate' conspiracy,12 2016.
 		\bibitem{ZAROCOSTAS2020676} John Zarocostas. How to fight an infodemic. \textit{The Lancet}, Vol. 395, No. 10225, p. 676, 2020.
+		\bibitem{Wang:2018:EEA:3219819.3219903} Yaqing Wang, \textit{et al.} EANN: Event Adversarial Neural Networks for Multi-Modal Fake News Detection. In \textit{Proc. of KDD'18}, pp. 849-857. 2018.
+		\bibitem{Wu:2018:TFF:3159652.3159677} Liang Wu and Huan Liu. Tracing Fake-News Footprints: Characterizing Social Media Messages by How They Propagate. In \textit{Proc. of WSDM '18},  pp. 637-645, 2018.
 		\bibitem{Shu2018FakeNewsNetAD} Kai Shu, \textit{et al.} Fakenewsnet: Adata repository with news content, social context and dynamic information for studying fake news on social media. \textit{ArXiv}, Vol. abs/1809.01286, 2018.
+		\bibitem{shu2017fake} Kai Shu, \textit{et al.} Fake News Detection on Social Media: A Data Mining Perspective. \textit{ACM SIGKDD Explorations Newsletter}, Vol. 19, No. 1, pp. 22-36, 2017.
 		\bibitem{NIPS2019_9106} Rowan Zellers, \textit{et al.} Defending against neural fake news. \textit{Advances in Neural Information Processing Systems 32}, pp. 9054–9065. Curran Associates, Inc., 2019.
 		\bibitem{EasyChair:3190} Yuta Yanagi, \textit{et al.} Fake news detection with generated comments for news articles. \textit{EasyChair Preprint no. 3190}, EasyChair, 2020.
 	\end{thebibliography}

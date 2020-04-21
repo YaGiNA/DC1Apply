@@ -20,7 +20,7 @@
 
 	早期検出できてもユーザから信用が得られない狼少年的なモデルではなく、
 	\textbf{的確にフェイクニュースだけを発見させることが可能なモデル}を構築する。
-	また、性能向上に向く大規模データセットがない場合は条件に符合するものを自作する。
+	%また、性能向上に向く大規模データセットがない場合は条件に符合するものを自作する。
 	最低でもF値0.7以上を目指す。
 
 	\noindent
@@ -61,9 +61,9 @@
 	この調査により収集したデータは、個⼈の特定につながる情報を匿名化した上で解析を⾏い、
 	解析結果の公表に際しては、匿名化を⾏ったデータを⽤い、個⼈情報の漏洩防⽌に配慮する。
 
-	{\small
+	{\footnotesize
 		\begin{thebibliography}{99}
-			\setcounter{enumiv}{9}
+			\setcounter{enumiv}{12}
 			\bibitem{twitter_2020} Twitter開発者ポリシーを分かりやすくアップデート, 2020年3月11日. (最終閲覧日 2020年4月19日) \url{https://blog.twitter.com/developer/ja_jp/topics/tools/2020/DevPolicyUpdate.html}
 		\end{thebibliography}
 	}
@@ -74,6 +74,8 @@
 %begin  研究の特色と独創的な点＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 	\noindent
 	●\textbf{これまでの先行研究等があれば、それらと比較して、本研究の特色、着眼点、独創的な点}
+
+	先行研究で既に学術的に実現されている事項と、本研究との差異を記述する。
 
 	ニュースに寄せられそうなコメントを生成する手法は、
 	確率分布に従った潜在変数と正解ラベルを使用して頻出単語を生成するTCNN-URGが提案されている\cite{ijcai2018-533}。
@@ -91,20 +93,20 @@
 	\noindent
 	●\textbf{国内外の関連する研究の中での当該研究の位置づけ、意義}
 
-	風評やデマの自動検出も当該研究に含めると、歴史は決して浅くない。
-	ただし、ここ\textbf{数年で社会情勢の変化によって一気に世界的に競争が激化}した。
+	この研究は、ここ\textbf{数年で社会情勢の変化によって一気に世界的に競争が激化}した。
 
 	例えば、Google Scholar上で2015年に投稿された中で``fake news''でヒットする論文は\textbf{520本}に対して、
 	同じ条件で2019年に投稿された論文は\textbf{15,400本}と実に\textbf{30倍近くに増加}した。
 
-	前項目の通り、特に北米や欧州から頻繁に英語論文が発表されている。
-	先述と同じプラットフォームで2019年で``フェイクニュース''でヒットする論文は\textbf{169本}と、1年間で実に日本語の\textbf{90倍以上}の英語論文が発表されている。
+	前項目の通り、この研究分野では頻繁に英語論文が発表されている。
+	同論文プラットフォームで2019年で``フェイクニュース''でヒットする論文は\textbf{169本}と、\textbf{英語の90分の1}にとどまる。
 
 	これは\textbf{地域による問題意識の差}の他にも、特に(本研究を含め)近年機械学習やDNNを活用した研究が多いことも考えられる。
 	これらの手法に必要な記事と真偽データなどを含む\textbf{大規模データセットが英語に集中している}のである。
-	フェイクニュース検出の場合、ファクトチェック結果をラベル付けに流用することができるが、
+	フェイクニュース検出の場合、ファクトチェック結果をラベル付けに流用することができる\cite{wang-2017-liar}が、
 	北米・欧州に比べて日本国内のファクトチェックは発展途上であるため、日本語データセットが少ない。
 	もしも日本語を研究対象に含める場合、まずはデータセット作りから着手する必要がある。
+	また、同様の理由により言語や地域性による差異まで言及した研究はみられない。
 
 	\noindent
 	●\textbf{本研究が完成したとき予想されるインパクト及び将来の見通し}
@@ -115,12 +117,18 @@
 	古今東西で虚偽情報を流布しようとする人々は存在するが、\textbf{利用者が簡単に騙されないような仕組み作り}を行うことで、
 	\textbf{ジャーナリズムと民主主義に対する最大の脅威であるフェイクニュースから人々を守る}ことが可能となる。
 	
-	{\small
+	\vspace*{3mm}
+
+	{\footnotesize
 		\begin{thebibliography}{99}
-			\setcounter{enumiv}{6}
+			\setcounter{enumiv}{8}
+			\vspace*{-2mm}
+			\setlength{\parskip}{0cm}
+			\setlength{\itemsep}{0cm}
 			\bibitem{ijcai2018-533} Feng Qian, \textit{et al.} Neural user response generator: Fake news de-tection with collective user intelligence. In \textit{Proc. of the IJCAI-18}, pp. 3834–3840., 2018.
 			\bibitem{Shu2020LeveragingMW} Kai Shu, \textit{et al.} Leveraging multi-source weak social supervision for early detection of fake news. \textit{arXiv}, Vol.abs/2004.01732, 2020.
 			\bibitem{shu2019defend} Kai Shu, \textit{et al.} defend: Explainable fake news detection. In \textit{Proc. of the ACM SIGKDD}, 2019.
+			\bibitem{wang-2017-liar}William Yang Wang. ``Liar, Liar Pants on Fire'': A New Benchmark Dataset for Fake News Detection. In \textit{Proc. of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)}, pp.422-426, 2017.
 		\end{thebibliography}
 		%\bibliography{myreferences}
 		%\bibliographystyle{junsrt}
