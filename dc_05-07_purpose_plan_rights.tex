@@ -8,17 +8,17 @@
 	\noindent
 	●\textbf{研究目的}
 
-	図\ref{fig:objects}の通り、SNS上でフェイクニュースの拡散を抑制するため、早期自動検出の精度向上と説明可能性の付与を目的とする。
+	図2の通り、SNS上でフェイクニュースの拡散を抑制するため、早期自動検出の精度向上と説明可能性の付与を目的とする。
 	具体的には、(1)\textbf{生成されたコメントを使用した分類でF値が0.8を上回る手法の確立}と、
 	(2)\textbf{生成されたコメントからユーザへ説明可能性を提案する手法の確立}を目指す研究を行う。
 
 	\noindent
 	●\textbf{研究方法・研究内容}
 
-	\begin{wrapfigure}{r}[7pt]{0.3\linewidth}
+	\begin{wrapfigure}{r}[7pt]{0.25\linewidth}
 		\centering
-		\includegraphics[width=0.3\textwidth]{figs/objects.pdf}
-		\caption{本研究が目指す2つの目的}
+		\includegraphics[width=0.25\textwidth]{figs/objects.pdf}
+		\caption{本研究の目的}
 		\label{fig:objects}
     \end{wrapfigure}
 
@@ -26,9 +26,10 @@
 	(1) 生成されたコメントを使用した分類でF値が0.8を上回る手法の確立: 
 
 	早期検出できてもユーザから信用が得られない狼少年的なモデルではなく、
-	\textbf{的確にフェイクニュースだけを発見させることが可能なモデル}を構築する。
+	\textbf{誤りや見逃しなくフェイクニュースだけを発見するモデル}を構築する。
 	%また、性能向上に向く大規模データセットがない場合は条件に符合するものを自作する。
-	最低でもF値0.7以上を目指す。
+	%最低でもF値0.7以上を目指す。
+	また、データセットやモデルの変更で汎用性の向上も目指す。
 
 	\noindent
 	(2)生成されたコメントからユーザへ説明可能性を提案する手法の確立:
