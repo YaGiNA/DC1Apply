@@ -49,7 +49,7 @@
 	●\textbf{研究計画の期間中に異なった研究機関(外国の研究機関等を含む。)において研究に従事することを予定}
 	
 	申請者は\textbf{期間中1年間タリン工科大学の言語技術研究所(Tanel Alumäe所長)での活動を予定}している。
-	フェイクニュース関連研究には地域で温度差があり、北米と欧州では盛んに研究が行われている(次項目詳説)ため、
+	このトピックは北米と欧州で研究が盛んで(次項目詳説)、申請者も海外での活動実績が多い(9p.詳説)ため、
 	\textbf{最前線の研究に従事する}ためにも申請者が現地で研究に従事することが必要である。
 
 %end  研究目的と内容 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -80,41 +80,45 @@
 
 \newcommand{\研究の特色と独創的な点tillNextPage}{%
 %begin  研究の特色と独創的な点＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+	\vspace*{-1mm}	
 	\noindent
 	●\textbf{これまでの先行研究等があれば、それらと比較して、本研究の特色、着眼点、独創的な点}
 
-	先行研究で既に学術的に実現されている事項と、本研究との差異を記述する。
+	%先行研究で既に学術的に実現されている事項と、本研究との差異を記述する。
 
 	ニュースに寄せられそうなコメントを生成する手法は、
 	確率分布に従った潜在変数と正解ラベルを使用して頻出単語を生成するTCNN-URGが提案されている\cite{ijcai2018-533}。
-	本研究は\textbf{頻出単語を生成するのではなく}、説明可能性に繋ぎやすい\textbf{実際に投稿されたようなコメントを生成する}ことを目指している。
+	本研究は\textbf{頻出単語を生成するのではなく}、\textbf{説明可能性に繋ぎやすい実際に投稿されたようなコメントを生成する}ことを目指している。
 
 	また、速報性を維持するためにユーザの反応を補完する弱教師あり学習を活用した手法であるMWSSも既に今年提案されている\cite{Shu2020LeveragingMW}。
-	本研究では\textbf{生成する対象をコメントに絞っている}。
-	他のユーザの反応(リツイート、いいね、反応したユーザ情報)はコメントに比べて説明可能性に繋げにくいためである。
+	コメントに比べ他のユーザの反応(リツイート、いいね、反応したユーザ情報)は説明可能性に繋げにくいため、本研究では生成する対象をコメントに絞っている。
 
 	フェイクニュース対策に説明可能性を提供する手法として、
 	記事とコメントから真偽判断の決め手となった部分を評価するdEFENDが提案されている\cite{shu2019defend}。
 	これは既に投稿されたコメントを対象に含むため、まだコメントが多く寄せられていない状況である\textbf{早期検出を目指す場合には向かない}。
 	当研究では、\textbf{生成されたコメントから説明可能性を提供する}ことで早期検出を実現する。
-
+	
 	\noindent
 	●\textbf{国内外の関連する研究の中での当該研究の位置づけ、意義}
 
-	この研究は、ここ\textbf{数年で社会情勢の変化によって一気に世界的に競争が激化}した。
+	この研究は、ここ\textbf{数年で社会情勢の変化によって一気に世界的に競争が激化}した一方、
+	その\textbf{研究対象が英語に集中}している。
+	本研究は早期検出に加えて、上記研究の\textbf{知見のローカライズ}も視野に入れている。
 
 	例えば、Google Scholar上で2015年に投稿された中で``fake news''でヒットする論文は\textbf{520本}に対して、
 	同じ条件で2019年に投稿された論文は\textbf{15,400本}と実に\textbf{30倍近くに増加}した。
 
 	前項目の通り、この研究分野では頻繁に英語論文が発表されている。
-	同論文プラットフォームで2019年で``フェイクニュース''でヒットする論文は\textbf{169本}と、\textbf{英語の90分の1}にとどまる。
+	同論文プラットフォームで2019年で``フェイクニュース''でヒットする日本語論文は\textbf{169本}と、\textbf{英語の90分の1}にとどまる。
 
-	これは\textbf{地域による問題意識の差}の他にも、特に(本研究を含め)近年機械学習やDNNを活用した研究が多いことも考えられる。
-	これらの手法に必要な記事と真偽データなどを含む\textbf{大規模データセットが英語に集中している}のである。
+	これは地域による問題意識の差の他にも、近年機械学習やDNNを活用した研究が多いことも考えられる。
+	これらの手法に必要な記事と真偽データなどを含む\textbf{大規模データセットが英語に集中している}。
 	フェイクニュース検出の場合、ファクトチェック結果をラベル付けに流用することができる\cite{wang-2017-liar}が、
 	北米・欧州に比べて日本国内のファクトチェックは発展途上であるため、日本語データセットが少ない。
 	もしも日本語を研究対象に含める場合、まずはデータセット作りから着手する必要がある。
-	また、同様の理由により言語や地域性による差異まで言及した研究はみられない。
+	また、同様の理由により\textbf{言語や地域性による差異まで言及した研究はみられない}。
+	具体的には、ユーザへの拡散抑止を呼びかける場合、言語に問わず同じ方法が有効なのか、そうでないのか不明だ。
+	\textbf{日本国内のユーザに拡散抑止を大きく促すアプローチ方法の検討のためには、この詳細な差異を明らかにすることが必要}である。
 
 	\noindent
 	●\textbf{本研究が完成したとき予想されるインパクト及び将来の見通し}
@@ -123,9 +127,9 @@
 	また、フェイクニュースがSNS上で\textbf{早い段階で説得力がある理由によって指摘}することにより、
 	ユーザによる\textbf{拡散を抑制}することができる。
 	古今東西で虚偽情報を流布しようとする人々は存在するが、\textbf{ユーザが簡単に騙されないような仕組み作り}を行うことで、
-	\textbf{ジャーナリズムと民主主義に対する最大の脅威であるフェイクニュースから人々を守る}ことが可能となる。
+	\textbf{ジャーナリズムと民主主義に対する最大の脅威であるフェイクニュース}\cite{zhou2019wsdm}から\textbf{ユーザを守る}ことが可能となる。
 	
-	\vspace*{3mm}
+	\vspace*{-1mm}
 
 	{\footnotesize
 		\begin{thebibliography}{99}
@@ -133,10 +137,12 @@
 			\vspace*{-2mm}
 			\setlength{\parskip}{0cm}
 			\setlength{\itemsep}{0cm}
-			\bibitem{ijcai2018-533} Feng Qian, \textit{et al.} Neural user response generator: Fake news de-tection with collective user intelligence. In \textit{Proc. of the IJCAI-18}, pp. 3834–3840., 2018.
-			\bibitem{Shu2020LeveragingMW} Kai Shu, \textit{et al.} Leveraging multi-source weak social supervision for early detection of fake news. \textit{arXiv}, Vol.abs/2004.01732, 2020.
-			
-			\bibitem{wang-2017-liar}William Yang Wang. ``Liar, Liar Pants on Fire'': A New Benchmark Dataset for Fake News Detection. In \textit{Proc. of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)}, pp.422-426, 2017.
+			\begin{spacing}{0.7}
+				\bibitem{ijcai2018-533} Feng Qian, \textit{et al.} Neural user response generator: Fake news de-tection with collective user intelligence. In \textit{Proc. of the IJCAI-18}, pp. 3834–3840., 2018.
+				\bibitem{Shu2020LeveragingMW} Kai Shu, \textit{et al.} Leveraging multi-source weak social supervision for early detection of fake news. \textit{arXiv}, Vol.abs/2004.01732, 2020.
+				\bibitem{wang-2017-liar}William Yang Wang. ``Liar, Liar Pants on Fire'': A New Benchmark Dataset for Fake News Detection. In \textit{Proc. of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)}, pp.422-426, 2017.
+				\bibitem{zhou2019wsdm}Xinyi Zhou, et al. Fake news: Fundamental theories, detection strategies and challenges. In \textit{Proc. of the WSDM '19}, pp. 836–837, 2019.
+			\end{spacing}
 		\end{thebibliography}
 		%\bibliography{myreferences}
 		%\bibliographystyle{junsrt}
@@ -150,22 +156,25 @@
 	% 今の技術では「(4)研究計画」のスタート位置を指定できることができません。
 	% すみませんが、次の２行を調整してください。
 %	\clearpage	% もし「(3) 研究の特色・独創的な点」がp.6に流れこまないなら、この行を有効にしてください。
-	\vspace*{15mm}	% 「(4) 研究計画」が正しい高さから始まるように、この値を調整してください。
+	\vspace*{12mm}	% 「(4) 研究計画」が正しい高さから始まるように、この値を調整してください。
 
 	%\textbf{この行の高さは、上の「研究の特色・独創的な点」との間隔を\textbackslash vspaceを用いて調整してください。}
 
-	本研究の3年間のスケジュールを以下の表\ref{tbl:chart}に示す。
+	本研究の3年間のスケジュールを以下の図\ref{tbl:chart}に示す。
+	申請時点から採用までの期間は、現有のモデルの改善作業によって分類精度の向上を目指すほか、
+	以下の計画内のAとBに向けたモデルやデータセットの選定や作成の戦術立案を行う。
 
-	\vspace*{-7mm}
-
-	\begin{table}[h]
-		\centering
-		\caption{本研究の年次計画(1セルは半期を表す)}
-		\includegraphics[width=0.9\linewidth]{figs/chart.pdf}
-		\label{tbl:chart}
-    \end{table}
+	%\vspace*{-7mm}
 	
-	\vspace*{-5mm}
+	
+
+	\begin{wrapfigure}{r}[7pt]{0.7\textwidth}
+		\centering
+		\includegraphics[width=0.7\textwidth]{figs/chart.pdf}
+		\caption{本研究の年次計画(1セルは半期を表す)}
+		\label{tbl:chart}
+	\end{wrapfigure}
+	%\vspace*{-5mm}
 
 	\noindent
 	●\textbf{1年目}
@@ -219,7 +228,8 @@
 	\noindent
 	\textbf{F. 拡散抑止力の評価}
 
-	実際にSNS上で提供した時を想定し、分類成績を改善させ説明可能性を付与したモデルがSNSユーザへの意識にどのような影響を与えるか主観評価実験によって評価する。
+	実際にSNS上で提供した時を想定し、Bによって分類成績を改善させ、Eによって説明可能性を付与したモデルの効果を測定する。
+	具体的には提案モデルがSNSユーザへの意識にどのような影響を与えるか主観評価実験によって評価する。
 	もしも生成されたコメントから説明可能性が得られない場合は、実際に投稿されたコメントや記事から得ることを予定している。
 
 
