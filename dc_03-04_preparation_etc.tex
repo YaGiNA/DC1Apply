@@ -51,6 +51,10 @@
 
 \newcommand{\現在までの研究状況}{%
 %begin  現在までの研究状況＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+	この研究では、フェイクニュースの早期自動検出のために、記事に加えてユーザのコメントを扱った。
+	ただし拡散初期段階ではコメントの数が少ないため、コメントを生成・付加することで検出を補助した。
+	実際にコメントを生成して真偽分類した結果、付加しない時より多くのフェイクニュースを検出した。
+
 	\subsection{これまでの研究の背景}
 	\noindent
 	●\textbf{これまでの研究の背景}
@@ -60,8 +64,8 @@
 	利用者の間で拡散されると、\textbf{誤った認識が広がって騙された人々が社会的損害を起こす}という問題があるため、
 	\textbf{\underline{フェイクニュース拡散の早期抑制が必要とされている}}。
 	%例えば、2016年米国大統領選挙前にフェイクニュースに騙された人々がピザ屋で銃撃事件を起こした\cite{agencies_2016}。
-	特に今年はCOVID-19にまつわるフェイクニュースが広く拡散され、不安に陥った人々が買いだめを行うことが世界的に問題となった。
-	WHOは情報の過剰な氾濫を``インフォデミック''と定義し、テドロス事務局長は\textbf{誤った情報はウイルス以上に拡散されやすい}と指摘した\cite{ZAROCOSTAS2020676}。
+	%特に今年はCOVID-19にまつわるフェイクニュースが広く拡散され、不安に陥った人々が買いだめを行うことが世界的に問題となった。
+	%WHOは情報の過剰な氾濫を``インフォデミック''と定義し、テドロス事務局長は\textbf{誤った情報はウイルス以上に拡散されやすい}と指摘した\cite{ZAROCOSTAS2020676}。
 
 	\subsection{問題点}
 	\noindent
@@ -73,7 +77,8 @@
 	このためフェイクニュースと比べ拡散されず、拡散抑制に繋がらないことが多い。
 	そこで迅速なファクトチェックを行うために、ニューステキストや添付メディア、
 	そしてユーザの反応からディープニューラルネットワーク (DNN)を利用しフェイクニュースを自動で検出する手法が多く開発されている
-	\cite{Wang:2018:EEA:3219819.3219903,Wu:2018:TFF:3159652.3159677}。
+	\cite{Wang:2018:EEA:3219819.3219903}。
+	特に、ユーザの反応は真偽によって大きな違いがみられる(i.e. フェイクである指摘やbotの介入)ことから、集合知として活用した研究も多くみられる\cite{Wu:2018:TFF:3159652.3159677}。
 	%これを自動で検出する場合、フェイクニュースは巧妙に実際のニュースを模した形をとるため、\textbf{単純なルールベース手法では難しい}。
 	%近年ではニューステキストや添付メディア、ユーザの反応から\textbf{ディープニューラルネットワーク(DNN)}を利用した手法がみられる。
 	%この場合はブラックボックス問題により\textbf{説明可能性が不足}するため、SNS利用者から支持を得にくい。
@@ -86,24 +91,27 @@
 	●\textbf{解決方策}
 
 	そこで本研究ではDNNの\textbf{学習でのみユーザの反応を活用}し、テスト時は\textbf{ユーザの反応をコメント生成モデルにより生成・補完}して分類することで、
-	\textbf{精度を落とさず早期検出を目指す}ことにした。
+	\textbf{性能を落とさず早期検出を目指す}ことにした。
 
 	\subsection{研究目的・研究方法}
 	\noindent
 	●\textbf{研究目的・研究方法}
 
-	フェイクニュース早期検出に向け、SNS上で\textbf{ニュースに寄せられたコメントを生成する}ことが、
-	\textbf{真偽を分類する精度の向上につながる}ことを示す。
+	フェイクニュース早期検出に向け、SNS上でニュースに寄せられたコメントを生成することが、
+	真偽を分類するの向上につながることを明らかにする。
 	本研究はニュースと寄せられたコメントを、
-	ニュースの本文と実際にSNS上で投稿されたコメント3件を1ユニットとして扱うことにした。
+	ニュースの本文と実際にSNS上で投稿されたコメント3件(モデル構造とデータセットの都合上)を1ユニットとして扱うことにした。
+	コメント生成と真偽分類はそれぞれモデルを独立させた。
+	真偽分類においては図\ref{fig:model}のように、コメントを1件削除し学習済コメント生成モデルから1件コメントを生成し補完した。
 	
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[width=0.95\linewidth]{figs/model.pdf}
-		\caption{分類タスクの流れ。コメント生成モデルで1件コメントを生成し真偽分類に活用する。}
+		\vspace*{-3mm}
+		\caption{提案手法の真偽判断までの流れ。}
 		\label{fig:model}
 	\end{figure}
-
+	\vspace*{-4mm}
 	\subsection{特色と独創的な点}
 	\noindent
 	●\textbf{特色と独創的な点}
@@ -112,19 +120,19 @@
 		\setlength{\parskip}{0cm}
 		\setlength{\itemsep}{0cm}
 		\item SNS上の拡散スピードに追いつくことが検出モデルのコンセプトである点
-		\item 真偽を評価する分類タスクに、コメントの生成タスクを組み込んだ点
+		\item \textbf{真偽を評価する分類タスクに、コメントの生成タスクを組み込んだ点}
 		\item 分類性能を大きく失わずに速報性をもつことができる点
 	\end{itemize}
-	\vspace*{-3mm}
+	\vspace*{-2mm}
 
-	特に2点目が、当研究最大のの学術的特色であると申請者は考えている。
+	特に2点目が、先行研究ではみられない本研究最大のの学術的特色であると申請者は考えている。
 
 	\subsection{これまでの研究経過及び得られた結果}
 	\noindent
 	●\textbf{これまでの研究経過及び得られた結果}
 
 	申請者はデータセットとしてFakeNewsNet\cite{Shu2018FakeNewsNetAD, shu2017fake}を使用した。
-	このデータセットは、ファクトチェックで\textbf{真偽が評価済である英文ニュース}と、それに\textbf{Twitter上で言及された投稿(ツイート)}等をもつ。
+	このデータセットは、ファクトチェックで真偽が評価済である英文ニュースと、それにTwitter上で言及された投稿(ツイート)等をもつ。
 	本研究では最低3件以上英文でコメントとしてツイートが寄せられた芸能ニュースを真偽で各2000件使用した。
 	拡散の初期段階ではコメントの数は期待できないため、使用するコメントは各3件ずつ無作為に選出し、残りは対象から除外した。
 
@@ -134,12 +142,13 @@
 	訓練が完了したコメント生成モデルを使い、図\ref{fig:model}の通り\textbf{コメントを1件欠損させたユニットに生成コメントを付加した上で、RealかFakeか分類させた}。
 	分類モデルはGroverが提供したものを流用した。
 
-	その結果、生成コメントを含めた場合の\textbf{Fake記事を見抜いた割合を示す再現率(Recall)が0.79}と、欠損のまま分類させたときの\textbf{0.75}と、本文単独で分類したときの\textbf{0.62}を上回った。
+	その結果、提案モデルによって生成されたコメントを含めて分類した際、\textbf{Fake記事を見抜いた割合を示す再現率(Recall)が0.79}と、欠損のまま分類させたときの\textbf{0.75}を上回った。
 	つまり、コメントを生成することで\textbf{ファクトチェックが必要な疑わしい記事をより多く検出}した\cite{EasyChair:3190}。
-	同時に、生成されたコメントで頻出した単語の傾向において真偽で大きな違いはみられなかった。
-	これは、\textbf{記事の真偽によってコメント内の単語傾向の差は軽微}であることを意味した。
+	%同時に、生成されたコメントで頻出した単語の傾向において真偽で大きな違いはみられなかった。
+	%これは、\textbf{記事の真偽によってコメント内の単語傾向の差は軽微}であることを意味した。
+	これは提案コメント生成モデルが、記事本文とコメントのみから信憑性による傾向の差異の学習に成功していることを示唆する。
 
-	\vspace*{-1mm}
+	\vspace*{1mm}
 	{\footnotesize 
 	%\bibliography{myreferences}
 	%\bibliographystyle{junsrt}
@@ -147,14 +156,16 @@
 		\vspace*{-2mm}
 		\setlength{\parskip}{0cm}
 		\setlength{\itemsep}{0cm}
+		\begin{spacing}{0.7}
 		%\bibitem{agencies_2016} Guardian staff and agencies. Washington gunman motivated by fake news `pizzagate' conspiracy,12 2016.
 		\bibitem{ZAROCOSTAS2020676} John Zarocostas. How to fight an infodemic. \textit{The Lancet}, Vol. 395, No. 10225, p. 676, 2020.
 		\bibitem{Wang:2018:EEA:3219819.3219903} Yaqing Wang, \textit{et al.} EANN: Event Adversarial Neural Networks for Multi-Modal Fake News Detection. In \textit{Proc. of KDD'18}, pp. 849-857. 2018.
 		\bibitem{Wu:2018:TFF:3159652.3159677} Liang Wu and Huan Liu. Tracing Fake-News Footprints: Characterizing Social Media Messages by How They Propagate. In \textit{Proc. of WSDM '18},  pp. 637-645, 2018.
 		\bibitem{Shu2018FakeNewsNetAD} Kai Shu, \textit{et al.} Fakenewsnet: Adata repository with news content, social context and dynamic information for studying fake news on social media. \textit{ArXiv}, Vol. abs/1809.01286, 2018.
 		\bibitem{shu2017fake} Kai Shu, \textit{et al.} Fake News Detection on Social Media: A Data Mining Perspective. \textit{ACM SIGKDD Explorations Newsletter}, Vol. 19, No. 1, pp. 22-36, 2017.
-		\bibitem{NIPS2019_9106} Rowan Zellers, \textit{et al.} Defending against neural fake news. \textit{Advances in Neural Information Processing Systems 32}, pp. 9054–9065. Curran Associates, Inc., 2019.
+		\bibitem{NIPS2019_9106} Rowan Zellers, \textit{et al.} Defending against neural fake news. \textit{NIPS 2019}, pp. 9054–9065, 2019.
 		\bibitem{EasyChair:3190} Yuta Yanagi, \textit{et al.} Fake news detection with generated comments for news articles. \textit{EasyChair Preprint no. 3190}, EasyChair, 2020.
+		\end{spacing}
 	\end{thebibliography}
 	}
 	%\input{blahblah}  % << only for demonstration. Please delete it or comment it out.	
