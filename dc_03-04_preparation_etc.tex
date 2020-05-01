@@ -15,9 +15,9 @@
 	前節で述べたGrover\cite{NIPS2019_9106}を始め、
 	より自然な文章が近年は生成できるようになった。
 	前節の研究で実際にGroverを拡張し、\textbf{コメントを生成することで多くのフェイクニュースを検出}した。
-	また、DNNは出力に対する説明が不足するブラックボックス問題があったが、
-	それを解決する説明可能なモデルも開発されている\cite{shu2019defend}ため、
+	また、DNNは出力に対する説明を付加するモデルも開発されており\cite{shu2019defend}、
 	本研究への活用も期待できる。
+	しかしながら、速報性を併せ持つ説明可能な検出モデルは今の所先行研究のいずれも行われていない。
 
 	このことから今後は、\textbf{検出と説明の両面から拡散の抑制をより期待できるモデルの開発を目指す}。
 
@@ -26,7 +26,7 @@
 	●\textbf{問題点}
 
 	生成コメントを付加し分類した場合、前節提案モデルがFakeと判断した中で実際にFakeだった割合である精度(Precision)は0.59だった。
-	これは生成コメントを付加せず分類したときの0.68と比べ0.09ポイント下回った\cite{EasyChair:3190}。
+	これは生成コメントを付加せず分類したときの0.68と比べ0.09ポイント下回った(業績\red{N}-1)。
 	つまり\textbf{提案モデルがFakeと判断したユニット中、41\%はRealを誤って検出した}。
 	精度と再現率の調和平均であるF値(F1 score)も、提案モデルは\textbf{0.68}と良好なものではなかった。
 
@@ -53,7 +53,7 @@
 			\vspace*{-1mm}
 			\setlength{\parskip}{0cm}
 			\setlength{\itemsep}{0cm}
-			\setcounter{enumiv}{7}
+			\setcounter{enumiv}{6}
 			\begin{spacing}{0.7}
 				\bibitem{shu2019defend} Kai Shu, \textit{et al.} defend: Explainable fake news detection. In \textit{Proc. of the ACM SIGKDD}, 2019.
 			\end{spacing}
