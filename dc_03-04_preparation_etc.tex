@@ -149,28 +149,32 @@
 
 	申請者はデータセットとしてFakeNewsNet\cite{Shu2018FakeNewsNetAD, shu2017fake}を使用した。
 	これはファクトチェックで真偽評価済である英文ニュースと、それにTwitter上で言及された投稿(ツイート)等をもつ。
-	本研究では最低3件以上コメントとして英文ツイートが寄せられた芸能ニュースを真偽で各2000件使用した。
-	先述の通り、拡散の初期段階ではコメントの数は期待できないため、使用するコメントは各3件ずつ無作為に選出し残りは対象から除外した。
+	本研究では3件以上英文ツイートが寄せられた芸能ニュースを真偽で各2000件使用した。
+	先述の通り、拡散初期段階では多くのコメントを期待できないため、使用コメントは各3件ずつ無作為に選出し残りを対象から除外した。
 
 	生成・分類モデルは、フェイクニュースを自動で作成するGroverモデル\cite{NIPS2019_9106}を拡張する形で実装した。
 	このモデルはフェイクニュースをドメイン・著者・投稿日・見出し・本文の5要素に分け、\textbf{ランダムで歯抜けにして予測させる形で生成学習を実現}したものである。
 	今回はこれをユニットの4要素(記事本文と3件のコメント)での実装を目指し調整を行った。
 	訓練が完了したコメント生成モデルを使い、図\ref{fig:model}の通り\textbf{コメントを1件欠損させたユニットに生成コメントを付加した上で、RealかFakeか分類させた}。
-	分類モデルはGroverが提供した生成または実在を分類するモデルを真偽分類のために流用した。
+	分類モデルはGroverが提供した生成または実在を分類するモデルを真偽分類へ流用した。
+	またコメント生成モデルが真偽そのものではなく、真偽に起因する文章の傾向差から学習させるため、
+	真偽データはコメント生成モデルでは入力から除外し、分類モデルでのみ入力対象とした。
 
 	その結果、提案モデルによって生成されたコメントを含めて分類した際、\textbf{Fake記事を見抜いた割合を示す再現率(Recall)が0.79}と、欠損のまま分類させたときの\textbf{0.75}を0.04ポイント上回った。
-	つまり、コメントを生成することで\textbf{ファクトチェックが必要な疑わしい記事をより多く検出}した\cite{EasyChair:3190}。
+	つまり、コメントを生成することで\textbf{ファクトチェックが必要な疑わしい記事をより多く検出}した(業績\red{N}-1)。
 	%同時に、生成されたコメントで頻出した単語の傾向において真偽で大きな違いはみられなかった。
 	%これは、\textbf{記事の真偽によってコメント内の単語傾向の差は軽微}であることを意味した。
 	これは提案コメント生成モデルが、
 	記事本文とコメントのみから信憑性による文章における傾向差異の学習に成功していることを示唆する結果であったと、申請者は考察している。
 
+	なお、業績\red{N}-1において申請者は研究室から受けた技術的サポートを除き研究の全ての部分を担当した。
 	%\vspace*{mm}
+
 	{\footnotesize 
 	%\bibliography{myreferences}
 	%\bibliographystyle{junsrt}
 	\begin{thebibliography}{99}
-		\vspace*{-2mm}
+		%\vspace*{-2mm}
 		\setlength{\parskip}{0cm}
 		\setlength{\itemsep}{0cm}
 		\begin{spacing}{0.7}
@@ -181,7 +185,7 @@
 		\bibitem{Shu2018FakeNewsNetAD} Kai Shu, \textit{et al.} Fakenewsnet: Adata repository with news content, social context and dynamic information for studying fake news on social media. \textit{ArXiv}, Vol. abs/1809.01286, 2018.
 		\bibitem{shu2017fake} Kai Shu, \textit{et al.} Fake News Detection on Social Media: A Data Mining Perspective. \textit{ACM SIGKDD Explorations Newsletter}, Vol. 19, No. 1, pp. 22-36, 2017.
 		\bibitem{NIPS2019_9106} Rowan Zellers, \textit{et al.} Defending against neural fake news. \textit{NIPS 2019}, pp. 9054–9065, 2019.
-		\bibitem{EasyChair:3190} Yuta Yanagi, \textit{et al.} Fake news detection with generated comments for news articles. \textit{EasyChair Preprint no. 3190}, EasyChair, 2020.
+		%\bibitem{EasyChair:3190} Yuta Yanagi, \textit{et al.} Fake news detection with generated comments for news articles. \textit{EasyChair Preprint no. 3190}, EasyChair, 2020.
 		\end{spacing}
 	\end{thebibliography}
 	}
